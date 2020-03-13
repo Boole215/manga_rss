@@ -14,7 +14,8 @@ from datetime import datetime
 
 class MangaFeed:
 
-    def __init__(self,feedURL):
+    def __init__(self, userTitle, feedURL):
+        self.userTitle = userTitle;
         self.thisFeed = feedURL;
         self.parsedURL = feedparser.parse(feedURL);
         self.topFeedTitles = [];
@@ -63,3 +64,5 @@ class MangaFeed:
 
         else:
             print("You have reached the bounds of the feed.");
+    def retTitle(self):
+        return self.userTitle;
