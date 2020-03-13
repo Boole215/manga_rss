@@ -101,7 +101,7 @@ while inUse:
 	x = "{0} Feeds loaded.\n".format(len(feedList))
 	currentCommand = input(x);
 	
-saveFile.close();
+saveFile.close();  
 #dumpfile = open("pickle.dat","rb");
 
 #thisobj = dill.load(dumpfile);
