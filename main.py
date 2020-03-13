@@ -1,5 +1,25 @@
 from rss_parsing import MangaFeed
-import dill
+import dill, os
+'''
+ Current commands
+~~~~~~~~~~~~~~~~~~
+- add
+-- feed (title, url)
+
+- remove
+-- feed (feedTitle) (removes a feed)
+
+
+- list
+-- feed (lists feeds by their given titles) !TODO:Alphabetically sorted titles?
+-- feed feedTitle (lists 10 chapters from feed)
+-- !TODO: feed feedTitle N (N returns information regarding that entry in the feed)
+
+- update
+-- feedTitle (updated the given feed)
+-- all       (updates all feeds), returns the names
+			  of the feeds that had updates
+'''
 
 #Dill is what I'm going to be using to save the feeds that we already have.
 #I'm not too sure as to where I'm going to place this quite yet, but I'm likely
@@ -8,27 +28,7 @@ import dill
 
 # This program should continue to run until the user inputs 'quit' or 'exit'
 
-# Current commands
-#~~~~~~~~~~~~~~~~~~
-#- add
-#-- feed (title, url)
-#
-#- remove
-#-- feed (feedTitle) (removes a feed)
-#
-#
-#- list
-#-- feed (lists feeds by their given titles) !TODO:Alphabetically sorted titles?
-#-- feed feedTitle (lists 10 chapters from feed)
-#
-#- update
-#-- feedTitle (updated the given feed)
-#-- all       (updates all feeds), returns the names
-#			  of the feeds that had updates
 
-
-
-inUse = True;
 
 
 def getPlace(feedTitle):
@@ -52,8 +52,20 @@ def remove(feedTitle):
 
 
 def listFeed(input):
-	if len(input) == 3:
+	if len(input) == 3 and input[1] == 'feed':
+		MangaObj = feedList[getPlace(input[2])];
+		MangaObj.retTenEntries();
+	elif len(input) == 2 and input[1] == 'feed':
+		for i in range(1,len(input)):
+			print(i.retTitle() + "\n");
+	else:
+		print("format:\n   list feed (feedTitle)");
 
+def updateFeed(input):
+	print("This is the update function!");
+
+def help(input):
+	print("this is the help function!");
 
 def splitCommand(input):
 	input.split(" ");
@@ -67,14 +79,29 @@ def splitCommand(input):
 	elif input[0] == 'list':
 		listFeed();
 
-saveFile = open('all2d.3dpd','rb');
+	elif input[0] == 'update':
+		updateFeed();
+
+	elif input[0] == 'exit':
+		inUse = False;
+
+	elif input[0] == 'help':
+		help(input);
+	
+	else:
+		print("Command not recognized.")
+
+
+inUse = True; # meaning: This program is 'inUse'
+
+saveFile = open("all2d.dat","rb");
 feedList = dill.load(saveFile);
 
 while inUse:
-
-	currentCommand = input("{} Feeds loaded.\n".insert(len(feedList));
+	x = "{0} Feeds loaded.\n".format(len(feedList))
+	currentCommand = input(x);
 	
+saveFile.close();
+#dumpfile = open("pickle.dat","rb");
 
-
-
-
+#thisobj = dill.load(dumpfile);
