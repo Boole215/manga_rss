@@ -1,10 +1,4 @@
-import feedparser, dill
-
-#Dill is what I'm going to be using to save the feeds that we already have.
-#I'm not too sure as to where I'm going to place this quite yet, but I'm likely
-#Going to make another file separate from this one, where I can put all the
-#GUI functions that are going to work with the class/methods
-
+import feedparser
 from datetime import datetime
 #one of the goalsis to take this RSS feed, and add it to a database of rss feeds
 #that we're going to reach into whenever we open the application
