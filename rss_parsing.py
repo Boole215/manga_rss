@@ -27,7 +27,11 @@ class MangaFeed:
         return str(parsedURL.feed.title);
         #returns the title of the feed as a string
 
-    def updateTitles(self):
+    def updateFeed(self):
+        self.parsedURL = feedparser.parse(feedURL);
+        self.feedTitle = str(self.parsedURL.feed.title);
+
+    def update(self):
         self.topFeedtitles = [];
         for i in range(10):
             self.topFeedTitles.append(self.parsedURL.entries[i].title);
@@ -36,6 +40,9 @@ class MangaFeed:
         self.lastUpdateTime = self.__retparseTime();
         #updates the lastUpdateTime to the current time (as the rss feed was
         #updated)
+
+    def retLastUpdateTime(self):
+        return self.lastUpdateTime;
 
 
     def retTenEntries(self):
